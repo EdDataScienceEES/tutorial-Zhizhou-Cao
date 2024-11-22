@@ -6,13 +6,13 @@
 
 #### <a href="#section2"> 2. Supervised Learning Algorithm</a>
 
-##### <a href="section2-1"> 2.1 Logistic Regression</a>
+##### <a href="#section2-1"> 2.1 Logistic Regression</a>
 
-##### <a href="section2-2"> 2.2 K-Nearest Neighbors (KNN)</a>
+##### <a href="#section2-2"> 2.2 K-Nearest Neighbors (KNN)</a>
 
-##### <a href="section2-3"> 2.3 Decision Trees/Random Forests</a>
+##### <a href="#section2-3"> 2.3 Decision Trees/Random Forests</a>
 
-##### <a href="section2-4"> 2.4 Support Vector Machines (SVM)</a>
+##### <a href="#section2-4"> 2.4 Support Vector Machines (SVM)</a>
 
 #### <a href="#section3"> 3. Comparison and Summary</a>
 
