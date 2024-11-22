@@ -6,13 +6,13 @@
 
 #### <a href="#section2"> 2. Supervised Learning Algorithm</a>
 
-##### <a id="section2-1"></a> 2.1 Logistic Regression
+##### <a href="section2-1"></a> 2.1 Logistic Regression
 
-##### <a id="section2-2"></a> 2.2 K-Nearest Neighbors (KNN)
+##### <a href="section2-2"></a> 2.2 K-Nearest Neighbors (KNN)
 
-##### <a id="section2-3"></a> 2.3 Decision Trees/Random Forests
+##### <a href="section2-3"></a> 2.3 Decision Trees/Random Forests
 
-##### <a id="section2-4"></a> 2.4 Support Vector Machines (SVM)
+##### <a href="section2-4"></a> 2.4 Support Vector Machines (SVM)
 
 #### <a href="#section3"> 3. Comparison and Summary</a>
 
@@ -81,25 +81,25 @@ ggplot(data = xy_fil, aes(x = x_dat, y = y_dat)) +  # Select the data to use
 
 At this point it would be a good idea to include an image of what the plot is meant to look like so students can check they've done it right. Replace `IMAGE_NAME.png` with your own image file:
 
-<a id="section2-1"></a> 
+<a name="section2-1"></a> 
 
 ## 2.1 K NEAREST NEIGHBOURS 
 
 2.12.1
 
-<a id="section2-2"></a> 
+<a name="section2-2"></a> 
 
 ## 2.2 K-Nearest Neighbors (KNN) 
 
 2.22.2
 
-<a id="section2-3"></a> 
+<a name="section2-3"></a> 
 
 ## 2.3 Decision Trees/Random Forests
 
 2.32.3
 
-<a id="section2-4"></a> 
+<a name="section2-4"></a> 
 
 ## 2.4 Support Vector Machines (SVM)
  
