@@ -10,7 +10,7 @@
 
 ##### <a href="#section2-2"> 2.2 K-Nearest Neighbors (KNN)</a>
 
-##### <a href="#section2-3"> 2.3 Decision Trees/Random Forests</a>
+##### <a href="#section2-3"> 2.3 Decision Tree</a>
 
 ##### <a href="#section2-4"> 2.4 Support Vector Machines (SVM)</a>
 
@@ -107,9 +107,87 @@ In this section, we will train our models using four different algorithms to acc
 
 ## 2.1 Logistic Regression
 
-While <a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank">linear regression</a> is leveraged when dependent variables are continuous, logistic regression is selected when the dependent variable is categorical, meaning they have binary outputs, such as "true" and "false" or "yes" and "no." While both regression models seek to understand relationships between data inputs, logistic regression is mainly used to solve binary classification problems, such as spam identification.
+While linear regression is leveraged when dependent variables are continuous, <a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank">logistic regression</a> is selected when the dependent variable is categorical, meaning they have binary outputs, such as "true" and "false" or "yes" and "no." While both regression models seek to understand relationships between data inputs, logistic regression is mainly used to solve binary classification problems, such as iris species identification.
 
+The logistic function, commonly referred to as the **sigmoid function**, is the basic idea underpinning logistic regression. This sigmoid function is used in logistic regression to describe the correlation between the predictor variables and the likelihood of the binary outcome.
 
+<center><img src="/Images/Logistic Regression.png" alt="Img" width="700" height="500"/></center>
+
+Since this algorithm can only have binary output, for example, we can classify whether a iris flower is "versicolor" or "not versicolor" species.
+
+1.  data preparation: create a binary variable `is_versicolor` where:
+
+-   `1` represents "versicolor".
+-   `0` represents the other species ("setosa" and "virginica").
+
+``` r
+# Create a binary classification problem
+iris.data$is_versicolor <- ifelse(iris$Species == "versicolor", 1, 0)
+
+```
+
+2.  Split Data into Training and Testing Sets
+
+`set.seed()` ensures every time we use the same data for training and testing.
+
+The **training set** is used to build the model, while the **test set** evaluates how well the model performs on unseen data. Split the data into a training set (70%) and a test set (30%).
+
+``` r
+set.seed(123)  # For reproducibility
+train_index <- sample(1:nrow(iris), size = 0.7 * nrow(iris))  # 70% for training
+train_data <- iris[train_index, ]
+test_data <- iris[-train_index, ]
+```
+
+3.  Fit Logistic Regression Model
+
+Use the `glm()` function with a `binomial` family for logistic regression. The model learns the relationship between the features and the target variable by estimating coefficients for each predictor.
+
+``` r
+# Fit logistic regression model
+logistic_model <- glm(is_versicolor ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, 
+                      data = train_data, 
+                      family = binomial)
+
+# Summary of the model
+summary(logistic_model)
+```
+
+4.  Make Predictions
+
+Use the `predict()` function to generate predicted probabilities for the test set. These **output probabilities** represent how likely each flower belongs to the "setosa" category. Convert probabilities to **binary** classifications (e.g., 1 if the probability is above 0.5, otherwise 0).
+
+``` r
+# Predict probabilities for the test set
+predicted_probs <- predict(logistic_model, newdata = test_data, type = "response")
+
+# Convert probabilities to binary predictions
+predicted_classes <- ifelse(predicted_probs > 0.5, 1, 0)
+```
+
+5.  Evaluate the Model performance
+
+`Confusion Matrix`: Summarizes the number of true positives, true negatives, false positives, and false negatives.
+
+``` r
+# Evaluate the model
+
+CM_LR <- confusionMatrix(as.factor(predicted_classes), as.factor(test_data$is_versicolor))
+CM_LR$table
+
+# Measure the accuracy
+accuracy <- mean(predicted_classes == test_data$is_setosa)
+print(paste("Accuracy:", round(accuracy * 100, 2), "%"))
+```
+
+##### Confusion Matrix
+
+|              | 0 Reference | 1 Reference |
+|--------------|-------------|-------------|
+| 0 Prediction | 24          | 10           |
+| 1 Prediction | 3           | 8          |
+
+From confusion matrix and `[1] "Accuracy: 71.11 %"` meaning that only part of the predictions were correct.  While the model performs well for identifying non-versicolor flowers, the number of correctly predicted "versicolor" flowers could be improved. You might consider adjusting the threshold for classification or tuning the model's parameters.
 
 <a name="section2-2"></a>
 
@@ -117,11 +195,55 @@ While <a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank
 
 <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">K-nearest neighbor</a>, also known as the KNN algorithm, is a non-parametric algorithm that classifies data points based on their proximity and association to other available data. This algorithm assumes that similar data points can be found near each other. As a result, it seeks to calculate the distance between data points, usually through Euclidean distance, and then it assigns a category based on the most frequent category or average. Its ease of use and low calculation time make it a preferred algorithm by data scientists, but as the test dataset grows, the processing time lengthens, making it less appealing for classification tasks. KNN is typically used for recommendation engines and image recognition.
 
+<center><img src="/Images/KNN.png" alt="Img" width="700" height="500"/></center>
 
+In this example, we'll follow a similar approach to the logistic regression above, but using KNN for the classification. We'll use the `class` package to implement the KNN algorithm.
+
+**We will use the same train and test data set**
+
+1. Fit KNN Model
+
+We use the `knn()` function from the class package to fit the KNN model. In this case, we will choose **k = 3**, meaning the classification will be based on the 3 nearest neighbors.
+
+```r
+# Train the KNN model
+k_value <- 3  # Number of neighbors
+predicted_classes_knn <- knn(train = train_data[, -c(5, 6)],  # Exclude Species and is_setosa columns
+                             test = test_data[, -c(5, 6)], 
+                             cl = train_data$is_setosa, 
+                             k = k_value)
+
+# View the predicted classes
+predicted_classes_knn
+```
+
+2. Evaluate the Model
+
+We evaluate the model's performance using the confusion matrix to understand how well the KNN classifier performed on the test set.
+
+
+```r
+# Evaluate the KNN model performance
+CM_KNN <- confusionMatrix(as.factor(predicted_classes_knn), as.factor(test_data$is_versicolor))
+CM_KNN$table
+
+# Calculate accuracy
+accuracy_knn <- mean(predicted_classes_knn == test_data$is_versicolor)
+print(paste("Accuracy:", round(accuracy_knn * 100, 2), "%"))
+
+```
+##### Confusion Matrix
+
+|              | 0 Reference | 1 Reference |
+|--------------|-------------|-------------|
+| 0 Prediction | 27          | 1          |
+| 1 Prediction | 0           | 17          |
+
+`[1] "Accuracy: 97.78 %"` The model achieved a very high accuracy of 97.78%, indicating that it correctly classified nearly all instances in the test set.The model demonstrated minimal error, with only one false negative and no false positives, suggesting it is well-suited for this binary classification task.
 
 <a name="section2-3"></a>
 
-## 2.3 Decision Trees/Random Forests
+## 2.3 Decision Tree
 
 A <a href="https://en.wikipedia.org/wiki/Decision_tree" target="_blank">decision tree</a> is a map of the possible outcomes of a series of related choices. It allows an individual or organization to weigh possible actions against one another based on their costs, probabilities, and benefits. They can can be used either to drive informal discussion or to map out an algorithm that predicts the best choice mathematically.
 
@@ -129,8 +251,7 @@ It typically starts with a single node, which branches into possible outcomes. E
 
 There are three different types of nodes: chance nodes, decision nodes, and end nodes. A chance node, represented by a circle, shows the probabilities of certain results. A decision node, represented by a square, shows a decision to be made, and an end node shows the final outcome of a decision path.
 
-<center><img src="/Images/Decision_Tree.jpg" alt="Img"/></center>
-
+<center><img src="/Images/Decision_Tree.jpg" alt="Img" width="700" height="500"/></center>
 
 <a name="section2-4"></a>
 
@@ -138,12 +259,9 @@ There are three different types of nodes: chance nodes, decision nodes, and end 
 
 A <a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank">support vector machine</a> is a popular supervised learning model developed by Vladimir Vapnik, used for both data classification and regression. That said, it is typically leveraged for classification problems, constructing a hyperplane where the distance between two classes of data points is at its maximum. This hyperplane is known as the decision boundary, separating the classes of data points (e.g., oranges vs. apples) on either side of the plane.
 
-
-
-
 <a name="section3"></a>
 
-## 3. The third section
+## 3. Comparison and Summary
 
 More text, code and images.
 
