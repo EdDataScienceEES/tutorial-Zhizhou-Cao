@@ -1,4 +1,7 @@
 <center><img src="/Images/background.jpeg" alt="Img"/></center>
+<div style="text-align: center;">
+    <img src="/Images/background.jpeg"" alt="Img"/>
+</div>
 
 ### Tutorial Aims
 
