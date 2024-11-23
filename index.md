@@ -195,7 +195,7 @@ From confusion matrix and `[1] "Accuracy: 71.11 %"` meaning that only part of th
 
 <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">K-nearest neighbor</a>, also known as the KNN algorithm, is a non-parametric algorithm that classifies data points based on their proximity and association to other available data. This algorithm assumes that similar data points can be found near each other. As a result, it seeks to calculate the distance between data points, usually through Euclidean distance, and then it assigns a category based on the most frequent category or average. Its ease of use and low calculation time make it a preferred algorithm by data scientists, but as the test dataset grows, the processing time lengthens, making it less appealing for classification tasks. KNN is typically used for recommendation engines and image recognition.
 
-<center><img src="/Images/KNN.png" alt="Img" width="700" height="500"/></center>
+<center><img src="/Images/KNN.png" alt="Img" /></center>
 
 In this example, we'll follow a similar approach to the logistic regression above, but using KNN for the classification. We'll use the `class` package to implement the KNN algorithm.
 
