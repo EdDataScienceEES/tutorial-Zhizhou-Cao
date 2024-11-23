@@ -1,11 +1,5 @@
 <center><img src="/Images/background.jpeg" alt="Img"/></center>
 
-::: {style="text-align: center;"}
-```         
-<img src="/Images/background.jpeg" alt="Img"/>
-```
-:::
-
 ### Tutorial Aims
 
 #### <a href="#section1"> 1. Introduction to Machine Learning</a>
@@ -22,7 +16,6 @@
 
 #### <a href="#section3"> 3. Comparison and Summary</a>
 
-
 <a name="section1"></a>
 
 ## 1. What is Machine Learning?
@@ -38,8 +31,6 @@ There are **four types** of Machine Learning algorithms,
 | <a href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank">Unsupervised Learning</a> | Unsupervised learning works with unlabeled data and aims to find hidden patterns or intrinsic structures in the input data. |
 | <a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Reinforcement Learning</a> | Reinforcement learning involves training agents to make a sequence of decisions by rewarding them for good actions and penalizing them for bad ones. |
 | <a href="https://en.wikipedia.org/wiki/Ensemble_learning" target="_blank">Ensemble Learning</a> | Ensemble learning combines multiple models to improve performance by leveraging the strengths of each model. |
-
-
 
 ### Have you ever wondered how to recognise different species of iris flowers?
 
@@ -64,7 +55,6 @@ library(class) #basic KNN
 library(randomForest) #Random Forest implementation
 library(stats) # Logistic regression is included in base R through the glm() function.
 library(e1071) #SVM
-
 ```
 
 ##### Load dataset
@@ -76,10 +66,10 @@ iris.data <- iris
 # Viewing iris dataset structure and attributes
 str(iris.data)
 ```
-There are 150 observations in total.
-Before we look into the algorithms, first take a brief look through the data set.
 
-```r
+There are 150 observations in total. Before we look into the algorithms, first take a brief look through the data set.
+
+``` r
 # Create a scatter plot
 scatter_iris <- ggplot(iris.data, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
   geom_point(size = 5, alpha = 0.6) +
@@ -96,42 +86,60 @@ boxplot_iris <- ggplot(iris.data, aes(x = Species, y = Sepal.Length, fill = Spec
   theme_classic()
 boxplot_iris 
 ```
-Ensure to call the plot name again so it can be displayed on the Plots panel. 
+
+Ensure to call the plot name again so it can be displayed on the Plots panel.
 
 <center><img src="/Images/scatter_iris.png" alt="Img"/></center>
 
 <center><img src="/Images/boxplot_sepal_length.png" alt="Img"/></center>
 
-From the above two plots, we can see the same species are tend to cluster together.  Now that we know that there is a clear difference in structural traits between species.
+From the above two plots, we can see the same species are tend to cluster together. Now that we know that there is a clear difference in structural traits between species.
 
 <a name="section2"></a>
 
 ## 2. Supervised Learning
 
+Supervised learning uses a training set to teach models to yield the desired output. This training dataset includes inputs and correct outputs, which allow the model to learn over time. The algorithm measures its accuracy through the loss function, adjusting until the error has been sufficiently minimized.
+
+In this section, we will train our models using four different algorithms to accurately recognize the species of iris flowers.
 
 <a name="section2-1"></a>
 
-## 2.1 K NEAREST NEIGHBOURS
+## 2.1 Logistic Regression
 
-2.12.1
+While <a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank">linear regression</a> is leveraged when dependent variables are continuous, logistic regression is selected when the dependent variable is categorical, meaning they have binary outputs, such as "true" and "false" or "yes" and "no." While both regression models seek to understand relationships between data inputs, logistic regression is mainly used to solve binary classification problems, such as spam identification.
+
+
 
 <a name="section2-2"></a>
 
 ## 2.2 K-Nearest Neighbors (KNN)
 
-2.22.2
+<a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">K-nearest neighbor</a>, also known as the KNN algorithm, is a non-parametric algorithm that classifies data points based on their proximity and association to other available data. This algorithm assumes that similar data points can be found near each other. As a result, it seeks to calculate the distance between data points, usually through Euclidean distance, and then it assigns a category based on the most frequent category or average. Its ease of use and low calculation time make it a preferred algorithm by data scientists, but as the test dataset grows, the processing time lengthens, making it less appealing for classification tasks. KNN is typically used for recommendation engines and image recognition.
+
+
 
 <a name="section2-3"></a>
 
 ## 2.3 Decision Trees/Random Forests
 
-2.32.3
+A <a href="https://en.wikipedia.org/wiki/Decision_tree" target="_blank">decision tree</a> is a map of the possible outcomes of a series of related choices. It allows an individual or organization to weigh possible actions against one another based on their costs, probabilities, and benefits. They can can be used either to drive informal discussion or to map out an algorithm that predicts the best choice mathematically.
+
+It typically starts with a single node, which branches into possible outcomes. Each of those outcomes leads to additional nodes, which branch off into other possibilities. This gives it a treelike shape.
+
+There are three different types of nodes: chance nodes, decision nodes, and end nodes. A chance node, represented by a circle, shows the probabilities of certain results. A decision node, represented by a square, shows a decision to be made, and an end node shows the final outcome of a decision path.
+
+<center><img src="/Images/Decision_Tree.jpg" alt="Img"/></center>
+
 
 <a name="section2-4"></a>
 
 ## 2.4 Support Vector Machines (SVM)
 
-2.42.4
+A <a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank">support vector machine</a> is a popular supervised learning model developed by Vladimir Vapnik, used for both data classification and regression. That said, it is typically leveraged for classification problems, constructing a hyperplane where the distance between two classes of data points is at its maximum. This hyperplane is known as the decision boundary, separating the classes of data points (e.g., oranges vs. apples) on either side of the plane.
+
+
+
 
 <a name="section3"></a>
 
