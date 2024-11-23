@@ -1,8 +1,10 @@
 <center><img src="/Images/background.jpeg" alt="Img"/></center>
 
-<div style="text-align: center;">
-    <img src="/Images/background.jpeg" alt="Img"/>
-</div>
+::: {style="text-align: center;"}
+```         
+<img src="/Images/background.jpeg" alt="Img"/>
+```
+:::
 
 ### Tutorial Aims
 
@@ -20,102 +22,116 @@
 
 #### <a href="#section3"> 3. Comparison and Summary</a>
 
-## You can read this text, then delete it and replace it with your text about your tutorial: what are the aims, what code do you need to achieve them?
-
-We are using `<a href="#section_number">text</a>` to create anchors within our text. For example, when you click on section one, the page will automatically go to where you have put `<a name="section_number"></a>`.
-
-To create subheadings, you can use `#`, e.g. `# Subheading 1` creates a subheading with a large font size. The more hashtags you add, the smaller the text becomes. If you want to make text bold, you can surround it with `__text__`, which creates **text**. For italics, use only one understore around the text, e.g. `_text_`, *text*.
-
-# Subheading 1
-
-## Subheading 2
-
-### Subheading 3
-
-This is some introductory text for your tutorial. Explain the skills that will be learned and why they are important. Set the tutorial in context.
-
-You can get all of the resources for this tutorial from <a href="https://github.com/ourcodingclub/CC-EAB-tut-ideas" target="_blank">this GitHub repository</a>. Clone and download the repo as a zip file, then unzip it.
 
 <a name="section1"></a>
 
 ## 1. What is Machine Learning?
-<a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank">Machine learning (ML)</a> is a field of study in artificial intelligence concerned with the development and study of statistical algorithms that can learn from data and generalize to unseen data, and thus perform tasks without explicit instructions. Today,this technologies have become some of the biggest players in the world of artificial intelligence and computer science.  
-In other words, just like repeatly showing items to a children to help them recognise, Machine learning makes computers more intelligent without explicitly teaching them how to behave. 
+
+<a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank">Machine learning (ML)</a> is a field of study in artificial intelligence concerned with the development and study of statistical algorithms that can learn from data and generalize to unseen data, and thus perform tasks without explicit instructions. Today,this technologies have become some of the biggest players in the world of artificial intelligence and computer science.\
+In other words, just like repeatly showing items to a children to help them recognise, Machine learning makes computers more intelligent without explicitly teaching them how to behave.
 
 There are **four types** of Machine Learning algorithms,
 
 | Types | Description |
-| --- | --- |
-|<a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank"> Supervised Learning</a>  | Supervised learning involves training a model on labeled data, where the desired output is known. The model learns to map inputs to outputs based on the provided examples. |
-|<a href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank">Unsupervised Learning</a> | Unsupervised learning works with unlabeled data and aims to find hidden patterns or intrinsic structures in the input data. |
-|<a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Reinforcement Learning</a> | Reinforcement learning involves training agents to make a sequence of decisions by rewarding them for good actions and penalizing them for bad ones. |
-|<a href="https://en.wikipedia.org/wiki/Ensemble_learning" target="_blank">Ensemble Learning</a> | Ensemble learning combines multiple models to improve performance by leveraging the strengths of each model. |
+|------------------------------------|------------------------------------|
+| <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank"> Supervised Learning</a> | Supervised learning involves training a model on labeled data, where the desired output is known. The model learns to map inputs to outputs based on the provided examples. |
+| <a href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank">Unsupervised Learning</a> | Unsupervised learning works with unlabeled data and aims to find hidden patterns or intrinsic structures in the input data. |
+| <a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Reinforcement Learning</a> | Reinforcement learning involves training agents to make a sequence of decisions by rewarding them for good actions and penalizing them for bad ones. |
+| <a href="https://en.wikipedia.org/wiki/Ensemble_learning" target="_blank">Ensemble Learning</a> | Ensemble learning combines multiple models to improve performance by leveraging the strengths of each model. |
 
-**In this tutorial, we will only cover four algorithms in supervised learning.**
+
+
+### Have you ever wondered how to recognise different species of iris flowers?
+
+<center><img src="/Images/iris.png" alt="Img"/></center>
+
+While botanists use physical characteristics like petal and sepal measurements, in this tutorial, we will focus on teaching a computer to do the same! By leveraging the powerful R programming language, we’ll guide you through the process of using data analysis and classification techniques to identify iris species. Whether you’re a curious beginner or an experienced data enthusiast, this tutorial will equip you with the tools to build your own flower-recognition model.
+
+The `Iris` dataset, a cornerstone in the field of data science and machine learning, serves as a classic example for exploring data analysis and classification techniques. Collected by the botanist *Edgar Anderson*, this dataset provides measurements of sepal and petal dimensions for three iris species: Iris setosa, Iris versicolor, and Iris virginica. In this tutorial, we will harness the power of R to classify iris flowers based on their unique features. Whether you're a beginner looking to enhance your R skills or a data enthusiast eager to delve into supervised learning, this guide will walk you through each step of the process, blending theory with practical implementation.**Again, in this tutorial, we will only cover four algorithms in supervised learning.**
+
+##### Load packages
 
 ``` r
-# Set the working directory
-setwd("your_filepath")
+# Instal package if it's not done yet
+install.packages('package name')
 
-# Load packages
-library(ggplot2)
+# Loading required packages for this tutorial
+library(caret)
+library(tidyverse) #data manipulation and visualization
 library(dplyr)
+library(ggplot2)
+library(class) #basic KNN
+library(randomForest) #Random Forest implementation
+library(stats) # Logistic regression is included in base R through the glm() function.
+library(e1071) #SVM
+
 ```
+
+##### Load dataset
+
+``` r
+# Loading iris dataset
+iris.data <- iris
+
+# Viewing iris dataset structure and attributes
+str(iris.data)
+```
+There are 150 observations in total.
+Before we look into the algorithms, first take a brief look through the data set.
+
+```r
+# Create a scatter plot
+scatter_iris <- ggplot(iris.data, aes(x = Petal.Width, y = Petal.Length, color = Species)) +
+  geom_point(size = 5, alpha = 0.6) +
+  theme_classic() +
+  theme(legend.position = c(0.8, 0.3))
+scatter_iris  
+  
+# Create a boxplot for Sepal.Length by Species
+boxplot_iris <- ggplot(iris.data, aes(x = Species, y = Sepal.Length, fill = Species)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of Sepal Length by Species",
+       x = "Species",
+       y = "Sepal Length") +
+  theme_classic()
+boxplot_iris 
+```
+Ensure to call the plot name again so it can be displayed on the Plots panel. 
+
+<center><img src="/Images/scatter_iris.png" alt="Img"/></center>
+
+<center><img src="/Images/boxplot_sepal_length.png" alt="Img"/></center>
+
+From the above two plots, we can see the same species are tend to cluster together.  Now that we know that there is a clear difference in structural traits between species.
 
 <a name="section2"></a>
 
 ## 2. Supervised Learning
 
-You can add more text and code, e.g.
 
-``` r
-# Create fake data
-x_dat <- rnorm(n = 100, mean = 5, sd = 2)  # x data
-y_dat <- rnorm(n = 100, mean = 10, sd = 0.2)  # y data
-xy <- data.frame(x_dat, y_dat)  # combine into data frame
-```
+<a name="section2-1"></a>
 
-Here you can add some more text if you wish.
-
-``` r
-xy_fil <- xy %>%  # Create object with the contents of `xy`
-    filter(x_dat < 7.5)  # Keep rows where `x_dat` is less than 7.5
-```
-
-And finally, plot the data:
-
-``` r
-ggplot(data = xy_fil, aes(x = x_dat, y = y_dat)) +  # Select the data to use
-    geom_point() +  # Draw scatter points
-    geom_smooth(method = "loess")  # Draw a loess curve
-```
-
-At this point it would be a good idea to include an image of what the plot is meant to look like so students can check they've done it right. Replace `IMAGE_NAME.png` with your own image file:
-
-<a name="section2-1"></a> 
-
-## 2.1 K NEAREST NEIGHBOURS 
+## 2.1 K NEAREST NEIGHBOURS
 
 2.12.1
 
-<a name="section2-2"></a> 
+<a name="section2-2"></a>
 
-## 2.2 K-Nearest Neighbors (KNN) 
+## 2.2 K-Nearest Neighbors (KNN)
 
 2.22.2
 
-<a name="section2-3"></a> 
+<a name="section2-3"></a>
 
 ## 2.3 Decision Trees/Random Forests
 
 2.32.3
 
-<a name="section2-4"></a> 
+<a name="section2-4"></a>
 
 ## 2.4 Support Vector Machines (SVM)
- 
-2.42.4
 
+2.42.4
 
 <a name="section3"></a>
 
