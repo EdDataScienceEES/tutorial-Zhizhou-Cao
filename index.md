@@ -4,7 +4,7 @@
 
 #### <a href="#section1"> 1. Introduction to Machine Learning</a>
 
-#### <a href="#section2"> 2. Supervised Learning Algorithm</a>
+#### <a href="#section2"> 2. Supervised Learning Algorithms</a>
 
 ##### <a href="#section2-1"> 2.1 Logistic Regression</a>
 
@@ -34,13 +34,20 @@ You can get all of the resources for this tutorial from <a href="https://github.
 
 <a name="section1"></a>
 
-## 1. The first section
+## 1. What is Machine Learning?
+<a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank">Machine learning (ML)</a> is a field of study in artificial intelligence concerned with the development and study of statistical algorithms that can learn from data and generalize to unseen data, and thus perform tasks without explicit instructions. Today,this technologies have become some of the biggest players in the world of artificial intelligence and computer science.  
+In other words, just like repeatly showing items to a children to help them recognise, Machine learning makes computers more intelligent without explicitly teaching them how to behave. 
 
-At the beginning of your tutorial you can ask people to open `RStudio`, create a new script by clicking on `File/ New File/ R Script` set the working directory and load some packages, for example `ggplot2` and `dplyr`. You can surround package names, functions, actions ("File/ New...") and small chunks of code with backticks, which defines them as inline code blocks and makes them stand out among the text, e.g. `ggplot2`.
+There are **four types** of Machine Learning algorithms,
 
-When you have a larger chunk of code, you can paste the whole code in the `Markdown` document and add three backticks on the line before the code chunks starts and on the line after the code chunks ends. After the three backticks that go before your code chunk starts, you can specify in which language the code is written, in our case `R`.
+| Types | Description |
+| --- | --- |
+|<a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank"> Supervised Learning</a>  | Supervised learning involves training a model on labeled data, where the desired output is known. The model learns to map inputs to outputs based on the provided examples. |
+|<a href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank">Unsupervised Learning</a> | Unsupervised learning works with unlabeled data and aims to find hidden patterns or intrinsic structures in the input data. |
+|<a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Reinforcement Learning</a> | Reinforcement learning involves training agents to make a sequence of decisions by rewarding them for good actions and penalizing them for bad ones. |
+|<a href="https://en.wikipedia.org/wiki/Ensemble_learning" target="_blank">Ensemble Learning</a> | Ensemble learning combines multiple models to improve performance by leveraging the strengths of each model. |
 
-To find the backticks on your keyboard, look towards the top left corner on a Windows computer, perhaps just above `Tab` and before the number one key. On a Mac, look around the left `Shift` key. You can also just copy the backticks from below.
+**In this tutorial, we will only cover four algorithms in supervised learning.**
 
 ``` r
 # Set the working directory
@@ -53,7 +60,7 @@ library(dplyr)
 
 <a name="section2"></a>
 
-## 2. The second section
+## 2. Supervised Learning
 
 You can add more text and code, e.g.
 
