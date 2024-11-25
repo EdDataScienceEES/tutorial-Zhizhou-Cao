@@ -25,12 +25,17 @@ In other words, just like repeatly showing items to a children to help them reco
 
 There are **four types** of Machine Learning algorithms,
 
-| Types | Description |
-|------------------------------------|------------------------------------|
-| <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank"> Supervised Learning</a> | Supervised learning involves training a model on labeled data, where the desired output is known. The model learns to map inputs to outputs based on the provided examples. |
-| <a href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank">Unsupervised Learning</a> | Unsupervised learning works with unlabeled data and aims to find hidden patterns or intrinsic structures in the input data. |
-| <a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Reinforcement Learning</a> | Reinforcement learning involves training agents to make a sequence of decisions by rewarding them for good actions and penalizing them for bad ones. |
-| <a href="https://en.wikipedia.org/wiki/Ensemble_learning" target="_blank">Ensemble Learning</a> | Ensemble learning combines multiple models to improve performance by leveraging the strengths of each model. |
++-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Types                                                                                                     | Description                                                                                                                                                                 |
++===========================================================================================================+=============================================================================================================================================================================+
+| <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank"> Supervised Learning</a>         | Supervised learning involves training a model on labeled data, where the desired output is known. The model learns to map inputs to outputs based on the provided examples. |
++-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| <a href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank">Unsupervised Learning</a>   | Unsupervised learning works with unlabeled data and aims to find hidden patterns or intrinsic structures in the input data.                                                 |
++-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| <a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Reinforcement Learning</a> | Reinforcement learning involves training agents to make a sequence of decisions by rewarding them for good actions and penalizing them for bad ones.                        |
++-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| <a href="https://en.wikipedia.org/wiki/Ensemble_learning" target="_blank">Ensemble Learning</a>           | Ensemble learning combines multiple models to improve performance by leveraging the strengths of each model.                                                                |
++-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ### Have you ever wondered how to recognise different species of iris flowers?
 
@@ -38,7 +43,7 @@ There are **four types** of Machine Learning algorithms,
 
 While botanists use physical characteristics like petal and sepal measurements, in this tutorial, we will focus on teaching a computer to do the same! By leveraging the powerful R programming language, we’ll guide you through the process of using data analysis and classification techniques to identify iris species. Whether you’re a curious beginner or an experienced data enthusiast, this tutorial will equip you with the tools to build your own flower-recognition model.
 
-The `Iris` dataset, a cornerstone in the field of data science and machine learning, serves as a classic example for exploring data analysis and classification techniques. Collected by the botanist *Edgar Anderson*, this dataset provides measurements of sepal and petal dimensions for three iris species: Iris setosa, Iris versicolor, and Iris virginica. In this tutorial, we will harness the power of R to classify iris flowers based on their unique features. Whether you're a beginner looking to enhance your R skills or a data enthusiast eager to delve into supervised learning, this guide will walk you through each step of the process, blending theory with practical implementation.**Again, in this tutorial, we will only cover four algorithms in supervised learning.**
+The `Iris` dataset, a cornerstone in the field of data science and machine learning, serves as a classic example for exploring data analysis and classification techniques. Collected by the botanist *Edgar Anderson*, this dataset provides measurements of sepal and petal dimensions for three iris species: Iris setosa, Iris versicolor, and Iris virginica. In this tutorial, we will harness the power of R to classify iris flowers based on their unique features. Whether you're a beginner looking to enhance your R skills or a data enthusiast eager to delve into supervised learning, this guide will walk you through each step of the process, blending theory with practical implementation. **Again, in this tutorial, we will only cover four algorithms in supervised learning.**
 
 ##### Load packages
 
@@ -123,7 +128,6 @@ Since this algorithm can only have binary output, for example, we can classify w
 ``` r
 # Create a binary classification problem
 iris.data$is_versicolor <- ifelse(iris$Species == "versicolor", 1, 0)
-
 ```
 
 2.  Split Data into Training and Testing Sets
@@ -168,12 +172,14 @@ predicted_classes <- ifelse(predicted_probs > 0.5, 1, 0)
 5.  Evaluate the Model performance
 
 `Confusion Matrix`: Summarizes the number of true positives, true negatives, false positives, and false negatives.
+Hint: for displaying table in html format or website, we could use the function `kable(..., format = "html")`
 
 ``` r
 # Evaluate the model
 
-CM_LR <- confusionMatrix(as.factor(predicted_classes), as.factor(test_data$is_versicolor))
-CM_LR$table
+CM_KNN <- confusionMatrix(as.factor(predicted_classes_knn), as.factor(test_data$is_versicolor))
+CM_KNN$table
+kable(CM_KNN$table, format = "html")
 
 # Measure the accuracy
 accuracy <- mean(predicted_classes == test_data$is_setosa)
@@ -181,13 +187,29 @@ print(paste("Accuracy:", round(accuracy * 100, 2), "%"))
 ```
 
 ##### Confusion Matrix
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> 0 </th>
+   <th style="text-align:right;"> 1 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 0 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+</tbody>
+</table>
 
-|              | 0 Reference | 1 Reference |
-|--------------|-------------|-------------|
-| 0 Prediction | 24          | 10           |
-| 1 Prediction | 3           | 8          |
-
-From confusion matrix and `[1] "Accuracy: 71.11 %"` meaning that only part of the predictions were correct.  While the model performs well for identifying non-versicolor flowers, the number of correctly predicted "versicolor" flowers could be improved. You might consider adjusting the threshold for classification or tuning the model's parameters.
+From confusion matrix and `[1] "Accuracy: 71.11 %"` meaning that only part of the predictions were correct. While the model performs well for identifying non-versicolor flowers, the number of correctly predicted "versicolor" flowers could be improved. You might consider adjusting the threshold for classification or tuning the model's parameters.
 
 <a name="section2-2"></a>
 
@@ -201,11 +223,11 @@ In this example, we'll follow a similar approach to the logistic regression abov
 
 **We will use the same train and test data set**
 
-1. Fit KNN Model
+1.  Fit KNN Model
 
 We use the `knn()` function from the class package to fit the KNN model. In this case, we will choose **k = 3**, meaning the classification will be based on the 3 nearest neighbors.
 
-```r
+``` r
 # Train the KNN model
 k_value <- 3  # Number of neighbors
 predicted_classes_knn <- knn(train = train_data[, -c(5, 6)],  # Exclude Species and is_setosa columns
@@ -217,12 +239,11 @@ predicted_classes_knn <- knn(train = train_data[, -c(5, 6)],  # Exclude Species 
 predicted_classes_knn
 ```
 
-2. Evaluate the Model
+2.  Evaluate the Model
 
 We evaluate the model's performance using the confusion matrix to understand how well the KNN classifier performed on the test set.
 
-
-```r
+``` r
 # Evaluate the KNN model performance
 CM_KNN <- confusionMatrix(as.factor(predicted_classes_knn), as.factor(test_data$is_versicolor))
 CM_KNN$table
@@ -230,16 +251,87 @@ CM_KNN$table
 # Calculate accuracy
 accuracy_knn <- mean(predicted_classes_knn == test_data$is_versicolor)
 print(paste("Accuracy:", round(accuracy_knn * 100, 2), "%"))
-
 ```
+
 ##### Confusion Matrix
 
-|              | 0 Reference | 1 Reference |
-|--------------|-------------|-------------|
-| 0 Prediction | 27          | 1          |
-| 1 Prediction | 0           | 17          |
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> 0 </th>
+   <th style="text-align:right;"> 1 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 0 </td>
+   <td style="text-align:right;"> 27 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 17 </td>
+  </tr>
+</tbody>
+</table>
 
 `[1] "Accuracy: 97.78 %"` The model achieved a very high accuracy of 97.78%, indicating that it correctly classified nearly all instances in the test set.The model demonstrated minimal error, with only one false negative and no false positives, suggesting it is well-suited for this binary classification task.
+
+Try different number of k:
+
+``` r
+# Create a vector to store accuracy values for each k
+k_values <- 1:15  # Range of k to evaluate
+accuracies <- numeric(length(k_values))  # Initialize vector for accuracies
+
+# Loop through each k value
+for (k in k_values) {
+  # Apply KNN
+  predicted_classes_knn <- knn(
+    train = train_data[, -c(5, 6)],  # Exclude Species and is_versicolor columns
+    test = test_data[, -c(5, 6)], 
+    cl = train_data$is_versicolor, 
+    k = k
+  )
+  
+  # Calculate accuracy
+  confusion_mat <- table(Prediction = predicted_classes_knn, Reference = test_data$is_versicolor)
+  accuracy <- sum(diag(confusion_mat)) / sum(confusion_mat)  # Correct predictions / Total predictions
+  accuracies[k] <- accuracy
+}
+```
+
+Visualised into a line plot:
+
+``` r
+# Create a data frame for visualization
+accuracy_data <- data.frame(k = k_values, Accuracy = accuracies)
+
+# Plot the accuracies
+KNN_plot <- ggplot(accuracy_data, aes(x = k, y = Accuracy)) +
+  geom_line(color = "blue", linewidth = 1) +
+  geom_point(color = "black", size = 2, alpha = 0.5) +
+  labs(
+    title = "Accuracy of KNN for Different k Values",
+    x = "k (Number of Neighbors)",
+    y = "Accuracy"
+  ) +
+  ylim(0.95, 1.02)+
+  theme_bw()
+KNN_plot
+```
+
+<center><img src="/Images/KNN_plot.png" alt="Img" width="700" height="500"/></center>
+
+The accuracy of 97.78% across all k values indicates that the KNN model is **robust** for this classification task. While k selection typically matters in KNN, the lack of variation in accuracy here suggests that this dataset provides sufficient separation between classes to achieve consistent results, regardless of the number of neighbors considered.
+
+In general, a simple approach to select k is set $k = \sqrt{n}$, where $n$ is the the number of samples in your training dataset. Remeber, it's better to have a odd number which prevent a tie situation if you only have two classes. A small value of k means that noise will have a higher influence on the result. A large value make it computationally expensive.
+
+In order to find the optimal k value, use cross-validation (especially leave-one-out cross-validation) is needed to evaluate the model's performance for different k values instead of relying solely on the training or test data. This helps prevent overfitting and ensures the chosen k generalises well to new data.
+
+For more detail, check the following links. <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)" target="_blank">cross-validation</a>, <a href="https://medium.com/@rkbohara097/how-to-find-the-optimal-value-of-k-in-knn-2d5177430f2a" target="_blank">Finding optical K for KNN</a>
 
 <a name="section2-3"></a>
 
@@ -253,8 +345,79 @@ There are three different types of nodes: chance nodes, decision nodes, and end 
 
 <center><img src="/Images/Decision_Tree.jpg" alt="Img" width="700" height="500"/></center>
 
-<a name="section2-4"></a>
+Let's use the same train data to Fit the Decision Tree Model.
 
+1.  Fit the Decision Tree Model
+
+``` r
+decision_tree <- rpart(
+  is_versicolor ~ .,  # Formula: Predicting is_versicolor based on all other variables
+  data = train_data,  # Training data
+  method = "class"    # Classification tree
+)
+```
+
+2.  Before tasking the model performance, we can visualize the Decision Tree through function `rpart.plot`. Unlike the previous we used `ggsave` to save the plot, here is another way.
+
+``` r
+png("decision_tree_plot.png", width = 800, height = 600)  # Set the file name and dimensions
+rpart.plot(decision_tree, main = "Decision Tree for Classifying Versicolor")  # Plot the tree
+dev.off()  # Close the graphics device
+```
+
+<center><img src="/Images/decision_tree_plot.png" alt="Img"/></center>
+
+The decision tree classifies samples as versicolor (1) or not versicolor (0) based on Species. If Species is setosa or virginica, the prediction is 0, covering 70% of the samples. If it is not, the prediction is 1, covering the remaining 30%. This clear split shows Species is highly effective for classification.
+
+3.  Make predictions
+
+``` r
+predicted_classes_dt <- predict(decision_tree, test_data, type = "class")
+```
+
+4.  Evaluate the result
+
+``` r
+# confusion matrix
+confusion_mat_dt <- confusionMatrix(as.factor(predicted_classes_dt), as.factor(test_data$is_versicolor))
+print(confusion_mat_dt$table)
+
+# Extract Accuracy
+accuracy_dt <- confusion_mat_dt$overall["Accuracy"]
+print(paste("Decision Tree Accuracy:", round(accuracy_dt * 100, 2), "%"))
+```
+
++---+----+----+
+|   | 0  | 1  |
++:==+===:+===:+
+| 0 | 27 | 0  |
++---+----+----+
+| 1 | 0  | 18 |
++---+----+----+
+
+`[1] "Decision Tree Accuracy: 100 %"`
+
+The decision tree model achieved a perfect classification. The confusion matrix shows no misclassifications: all 27 samples labeled as 0 (not versicolor) and all 18 samples labeled as 1 (versicolor) were correctly predicted. This indicates the model was able to fully utilize the feature Species to separate the classes without any errors, reflecting the strong separability of the data.
+
+#### Expand
+A <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank">Random Forest</a> is an ensemble method that builds multiple decision trees and combines their predictions to improve accuracy and reduce overfitting. The main idea behind random forests is:
+
+<center><img src="/Images/random_forest.png" alt="Img"/></center>
+
+
+- **Bootstrapping (Random Sampling)**: Randomly sample subsets of the training data to build each tree, allowing the model to generalize better.
+- **Random Feature Selection**: For each split in a tree, select a random subset of features, making the trees less correlated with each other and enhancing the model's diversity.
+- **Majority Voting**: For classification problems, each tree in the forest votes on the class, and the class with the most votes is chosen as the final prediction.
+
+Code example: 
+```r
+library(randomForest)
+random_forest <- randomForest(is_versicolor ~ ., data = train_data)
+predicted_classes_rf <- predict(random_forest, test_data)
+```
+For more detail, check the following <a href="https://www.rdocumentation.org/packages/randomForest/versions/4.7-1.2/topics/randomForest" target="_blank">link</a>.
+
+<a name="section2-4"></a>
 ## 2.4 Support Vector Machines (SVM)
 
 A <a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank">support vector machine</a> is a popular supervised learning model developed by Vladimir Vapnik, used for both data classification and regression. That said, it is typically leveraged for classification problems, constructing a hyperplane where the distance between two classes of data points is at its maximum. This hyperplane is known as the decision boundary, separating the classes of data points (e.g., oranges vs. apples) on either side of the plane.
