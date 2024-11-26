@@ -1,4 +1,4 @@
-<center><img src="/Images/background.jpeg" alt="Img"/></center>
+<center><img src="/Images/background.jpeg" alt="Img" width="589"/></center>
 
 ### Tutorial Aims
 
@@ -25,17 +25,12 @@ In other words, just like repeatly showing items to a children to help them reco
 
 There are **four types** of Machine Learning algorithms,
 
-+-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Types                                                                                                     | Description                                                                                                                                                                 |
-+===========================================================================================================+=============================================================================================================================================================================+
-| <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank"> Supervised Learning</a>         | Supervised learning involves training a model on labeled data, where the desired output is known. The model learns to map inputs to outputs based on the provided examples. |
-+-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| <a href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank">Unsupervised Learning</a>   | Unsupervised learning works with unlabeled data and aims to find hidden patterns or intrinsic structures in the input data.                                                 |
-+-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| <a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Reinforcement Learning</a> | Reinforcement learning involves training agents to make a sequence of decisions by rewarding them for good actions and penalizing them for bad ones.                        |
-+-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| <a href="https://en.wikipedia.org/wiki/Ensemble_learning" target="_blank">Ensemble Learning</a>           | Ensemble learning combines multiple models to improve performance by leveraging the strengths of each model.                                                                |
-+-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Types | Description |
+|----------------------------|--------------------------------------------|
+| <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank"> Supervised Learning</a> | Supervised learning involves training a model on labeled data, where the desired output is known. The model learns to map inputs to outputs based on the provided examples. |
+| <a href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank">Unsupervised Learning</a> | Unsupervised learning works with unlabeled data and aims to find hidden patterns or intrinsic structures in the input data. |
+| <a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Reinforcement Learning</a> | Reinforcement learning involves training agents to make a sequence of decisions by rewarding them for good actions and penalizing them for bad ones. |
+| <a href="https://en.wikipedia.org/wiki/Ensemble_learning" target="_blank">Ensemble Learning</a> | Ensemble learning combines multiple models to improve performance by leveraging the strengths of each model. |
 
 ### Have you ever wondered how to recognise different species of iris flowers?
 
@@ -112,7 +107,7 @@ In this section, we will train our models using four different algorithms to acc
 
 ## 2.1 Logistic Regression
 
-While linear regression is leveraged when dependent variables are continuous, <a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank">logistic regression</a> is selected when the dependent variable is categorical, meaning they have binary outputs, such as "true" and "false" or "yes" and "no." While both regression models seek to understand relationships between data inputs, logistic regression is mainly used to solve binary classification problems, such as iris species identification.
+While linear regression is leveraged when dependent variables are continuous, <a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank">**logistic regression**</a> is selected when the dependent variable is categorical, meaning they have binary outputs, such as "true" and "false" or "yes" and "no." While both regression models seek to understand relationships between data inputs, logistic regression is mainly used to solve binary classification problems, such as iris species identification.
 
 The logistic function, commonly referred to as the **sigmoid function**, is the basic idea underpinning logistic regression. This sigmoid function is used in logistic regression to describe the correlation between the predictor variables and the likelihood of the binary outcome.
 
@@ -171,8 +166,7 @@ predicted_classes <- ifelse(predicted_probs > 0.5, 1, 0)
 
 5.  Evaluate the Model performance
 
-`Confusion Matrix`: Summarizes the number of true positives, true negatives, false positives, and false negatives.
-Hint: for displaying table in html format or website, we could use the function `kable(..., format = "html")`
+`Confusion Matrix`: Summarizes the number of true positives, true negatives, false positives, and false negatives. Hint: for displaying table in html format or website, we could use the function `kable(..., format = "html")`
 
 ``` r
 # Evaluate the model
@@ -187,27 +181,11 @@ print(paste("Accuracy:", round(accuracy * 100, 2), "%"))
 ```
 
 ##### Confusion Matrix
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> 0 </th>
-   <th style="text-align:right;"> 1 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 0 </td>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-</tbody>
-</table>
+
+|     |   0 |   1 |
+|:----|----:|----:|
+| 0   |  24 |  10 |
+| 1   |   3 |   8 |
 
 From confusion matrix and `[1] "Accuracy: 71.11 %"` meaning that only part of the predictions were correct. While the model performs well for identifying non-versicolor flowers, the number of correctly predicted "versicolor" flowers could be improved. You might consider adjusting the threshold for classification or tuning the model's parameters.
 
@@ -215,9 +193,9 @@ From confusion matrix and `[1] "Accuracy: 71.11 %"` meaning that only part of th
 
 ## 2.2 K-Nearest Neighbors (KNN)
 
-<a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">K-nearest neighbor</a>, also known as the KNN algorithm, is a non-parametric algorithm that classifies data points based on their proximity and association to other available data. This algorithm assumes that similar data points can be found near each other. As a result, it seeks to calculate the distance between data points, usually through Euclidean distance, and then it assigns a category based on the most frequent category or average. Its ease of use and low calculation time make it a preferred algorithm by data scientists, but as the test dataset grows, the processing time lengthens, making it less appealing for classification tasks. KNN is typically used for recommendation engines and image recognition.
+<a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">**K-nearest neighbor**</a>, also known as the KNN algorithm, is a non-parametric algorithm that classifies data points based on their proximity and association to other available data. This algorithm assumes that similar data points can be found near each other. As a result, it seeks to calculate the distance between data points, usually through Euclidean distance, and then it assigns a category based on the most frequent category or average. Its ease of use and low calculation time make it a preferred algorithm by data scientists, but as the test dataset grows, the processing time lengthens, making it less appealing for classification tasks. KNN is typically used for recommendation engines and image recognition.
 
-<center><img src="/Images/KNN.png" alt="Img" /></center>
+<center><img src="/Images/KNN.png" alt="Img"/></center>
 
 In this example, we'll follow a similar approach to the logistic regression above, but using KNN for the classification. We'll use the `class` package to implement the KNN algorithm.
 
@@ -255,27 +233,10 @@ print(paste("Accuracy:", round(accuracy_knn * 100, 2), "%"))
 
 ##### Confusion Matrix
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> 0 </th>
-   <th style="text-align:right;"> 1 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 0 </td>
-   <td style="text-align:right;"> 27 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 17 </td>
-  </tr>
-</tbody>
-</table>
+|     |   0 |   1 |
+|:----|----:|----:|
+| 0   |  27 |   1 |
+| 1   |   0 |  17 |
 
 `[1] "Accuracy: 97.78 %"` The model achieved a very high accuracy of 97.78%, indicating that it correctly classified nearly all instances in the test set.The model demonstrated minimal error, with only one false negative and no false positives, suggesting it is well-suited for this binary classification task.
 
@@ -337,7 +298,7 @@ For more detail, check the following links. <a href="https://en.wikipedia.org/wi
 
 ## 2.3 Decision Tree
 
-A <a href="https://en.wikipedia.org/wiki/Decision_tree" target="_blank">decision tree</a> is a map of the possible outcomes of a series of related choices. It allows an individual or organization to weigh possible actions against one another based on their costs, probabilities, and benefits. They can can be used either to drive informal discussion or to map out an algorithm that predicts the best choice mathematically.
+A <a href="https://en.wikipedia.org/wiki/Decision_tree" target="_blank">**decision tree**</a> is a map of the possible outcomes of a series of related choices. It allows an individual or organization to weigh possible actions against one another based on their costs, probabilities, and benefits. They can can be used either to drive informal discussion or to map out an algorithm that predicts the best choice mathematically.
 
 It typically starts with a single node, which branches into possible outcomes. Each of those outcomes leads to additional nodes, which branch off into other possibilities. This gives it a treelike shape.
 
@@ -357,7 +318,7 @@ decision_tree <- rpart(
 )
 ```
 
-2.  Before tasking the model performance, we can visualize the Decision Tree through function `rpart.plot`. Unlike the previous we used `ggsave` to save the plot, here is another way.
+2.  Before tasking the model performance, we can visualize the Decision Tree through function `rpart.plot()`. Unlike the previous used `ggsave()` for `ggplot()` to save the plot, here is another way.
 
 ``` r
 png("decision_tree_plot.png", width = 800, height = 600)  # Set the file name and dimensions
@@ -367,7 +328,7 @@ dev.off()  # Close the graphics device
 
 <center><img src="/Images/decision_tree_plot.png" alt="Img"/></center>
 
-The decision tree classifies samples as versicolor (1) or not versicolor (0) based on Species. If Species is setosa or virginica, the prediction is 0, covering 70% of the samples. If it is not, the prediction is 1, covering the remaining 30%. This clear split shows Species is highly effective for classification.
+The decision tree classifies samples as versicolor (`1`) or not versicolor (`0`) based on Species. If Species is setosa or virginica, the prediction is 0, covering 70% of the samples. If it is not, the prediction is 1, covering the remaining 30%. This clear split shows Species is highly effective for classification.
 
 3.  Make predictions
 
@@ -375,7 +336,7 @@ The decision tree classifies samples as versicolor (1) or not versicolor (0) bas
 predicted_classes_dt <- predict(decision_tree, test_data, type = "class")
 ```
 
-4.  Evaluate the result
+4.  Evaluate Model Performance
 
 ``` r
 # confusion matrix
@@ -387,97 +348,116 @@ accuracy_dt <- confusion_mat_dt$overall["Accuracy"]
 print(paste("Decision Tree Accuracy:", round(accuracy_dt * 100, 2), "%"))
 ```
 
-+---+----+----+
-|   | 0  | 1  |
-+:==+===:+===:+
-| 0 | 27 | 0  |
-+---+----+----+
-| 1 | 0  | 18 |
-+---+----+----+
+|     |   0 |   1 |
+|:----|----:|----:|
+| 0   |  27 |   0 |
+| 1   |   0 |  18 |
 
 `[1] "Decision Tree Accuracy: 100 %"`
 
 The decision tree model achieved a perfect classification. The confusion matrix shows no misclassifications: all 27 samples labeled as 0 (not versicolor) and all 18 samples labeled as 1 (versicolor) were correctly predicted. This indicates the model was able to fully utilize the feature Species to separate the classes without any errors, reflecting the strong separability of the data.
 
 #### Expand
-A <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank">Random Forest</a> is an ensemble method that builds multiple decision trees and combines their predictions to improve accuracy and reduce overfitting. The main idea behind random forests is:
+
+A <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank">**Random Forest**</a> is an ensemble method that builds multiple decision trees and combines their predictions to improve accuracy and reduce overfitting. The main idea behind random forests is:
 
 <center><img src="/Images/random_forest.png" alt="Img"/></center>
 
+-   **Bootstrapping (Random Sampling)**: Randomly sample subsets of the training data to build each tree, allowing the model to generalize better.
+-   **Random Feature Selection**: For each split in a tree, select a random subset of features, making the trees less correlated with each other and enhancing the model's diversity.
+-   **Majority Voting**: For classification problems, each tree in the forest votes on the class, and the class with the most votes is chosen as the final prediction.
 
-- **Bootstrapping (Random Sampling)**: Randomly sample subsets of the training data to build each tree, allowing the model to generalize better.
-- **Random Feature Selection**: For each split in a tree, select a random subset of features, making the trees less correlated with each other and enhancing the model's diversity.
-- **Majority Voting**: For classification problems, each tree in the forest votes on the class, and the class with the most votes is chosen as the final prediction.
+Code example:
 
-Code example: 
-```r
+``` r
 library(randomForest)
 random_forest <- randomForest(is_versicolor ~ ., data = train_data)
 predicted_classes_rf <- predict(random_forest, test_data)
 ```
+
 For more detail, check the following <a href="https://www.rdocumentation.org/packages/randomForest/versions/4.7-1.2/topics/randomForest" target="_blank">link</a>.
 
 <a name="section2-4"></a>
+
 ## 2.4 Support Vector Machines (SVM)
 
-A <a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank">support vector machine</a> is a popular supervised learning model developed by Vladimir Vapnik, used for both data classification and regression. That said, it is typically leveraged for classification problems, constructing a hyperplane where the distance between two classes of data points is at its maximum. This hyperplane is known as the decision boundary, separating the classes of data points (e.g., oranges vs. apples) on either side of the plane.
+<a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank">**Support vector machine (SVM)**</a> is a popular supervised learning model developed by *Vladimir Vapnik*, used for both data classification and regression. That said, it is typically leveraged for classification problems, constructing a hyperplane where the **distance** between two classes of data points is at its **maximum**. This hyperplane is known as the decision boundary, separating the classes of data points (e.g., oranges vs. apples) on either side of the plane.
+
+<center><img src="/Images/SVM.png" alt="Img"/></center>
+
+Again, we are using the same training and testing dataset for this case.
+
+1.  Train an SVM Model
+
+The use of `factor()` ensures the predictions are either 0 or 1. (otherwise would be non-integer) - `kernel = "radial"`: This specifies the radial basis function (RBF) kernel, which is commonly used for classification problems. - `scale = TRUE`: This scales the features to have zero mean and unit variance, which helps SVM perform better.
+
+``` r
+# Ensure that the outcome variable is a factor (classification)
+train_data$is_versicolor <- factor(train_data$is_versicolor)
+test_data$is_versicolor <- factor(test_data$is_versicolor)
+
+# Train an SVM model using a radial basis function kernel (default kernel)
+svm_model <- svm(is_versicolor ~ ., data = train_data, kernel = "radial",scale = TRUE)
+```
+
+2.  Make Predictions
+
+``` r
+predicted_classes_svm <- predict(svm_model, test_data)
+```
+
+3.  Evaluate Model Performance
+
+``` r
+# Confusion Matrix and Accuracy for SVM
+CM_SVM <- confusionMatrix(as.factor(predicted_classes_svm), as.factor(test_data$is_versicolor))
+CM_SVM$table
+kable(CM_SVM$table, format = "html")
+
+accuracy_svm <- CM_SVM$overall["Accuracy"]
+```
+
+|     |   0 |   1 |
+|:----|----:|----:|
+| 0   |  27 |   0 |
+| 1   |   0 |  18 |
+
+`[1] "SVM Accuracy: 100 %"`
+
+The SVM model achieved 100% accuracy, meaning it correctly classified all instances in the test data. This suggests that the model has perfectly separated the classes in this dataset. However, it's important to note that perfect accuracy can sometimes indicate \*overfitting\*\*, especially if the dataset is small or simple, so it's always good to test the model on different data or use cross-validation to ensure robustness.
+
+4.  Visualisation
+
+If you are interested in how the SVM decision boundary looks, you can plot the decision boundary for the each two features (e.g., Sepal.Length and Sepal.Width) as an example. This visualization is only meaningful for datasets with 2 features.
+
+``` r
+# Reduce data to two features
+# Sepal
+Sepal_train_data <- train_data[, c(1, 2, 6)]
+# Train new model
+Sepal_svm_model <- svm(is_versicolor ~ ., data = Sepal_train_data, kernel = "radial", scale = TRUE)
+
+png("Images/svm_Sepal_plot.png", width = 800, height = 600)  # Set the file name and dimensions
+plot(Sepal_svm_model, Sepal_train_data)
+dev.off()  # Close the graphics device
+
+# Petal
+Petal_train_data <- train_data[, c(3,4, 6)]
+# Train new model
+Petal_svm_model <- svm(is_versicolor ~ ., data = Petal_train_data, kernel = "radial", scale = TRUE)
+
+png("Images/svm_Petal_plot.png", width = 800, height = 600)  # Set the file name and dimensions
+plot(Petal_svm_model, Petal_train_data)
+dev.off()  # Close the graphics device
+```
+
+<left><img src="/Images/svm_Sepal_plot.png" alt="Img" width="300"/></left> <right><img src="/Images/svm_Petal_plot.png" alt="Img" width="300"/></right>
+
+Based on the comparative analysis of SVM classification plots using different Iris flower measurements, we can conclude that petal characteristics (width and length) serve as substantially more reliable discriminative features than sepal measurements for species classification. While the sepal-based plot exhibits considerable overlap between classes and an irregular decision boundary, the petal-based plot demonstrates clear class separation, particularly for one species that forms a distinct cluster. The results also highlight the importance of feature selection in machine learning applications, as choosing the most informative features can significantly impact the model's performance and reliability.
+
+For more detail, check the following <a href="https://scikit-learn.org/1.5/modules/svm.html" target="_blank">link</a>.
 
 <a name="section3"></a>
 
 ## 3. Comparison and Summary
 
-More text, code and images.
-
-This is the end of the tutorial. Summarise what the student has learned, possibly even with a list of learning outcomes. In this tutorial we learned:
-
-##### - how to generate fake bivariate data
-
-##### - how to create a scatterplot in ggplot2
-
-##### - some of the different plot methods in ggplot2
-
-We can also provide some useful links, include a contact form and a way to send feedback.
-
-For more on `ggplot2`, read the official <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" target="_blank">ggplot2 cheatsheet</a>.
-
-Everything below this is footer material - text and links that appears at the end of all of your tutorials.
-
-<hr>
-
-<hr>
-
-#### Check out our <a href="https://ourcodingclub.github.io/links/" target="_blank">Useful links</a> page where you can find loads of guides and cheatsheets.
-
-#### If you have any questions about completing this tutorial, please contact us on [ourcodingclub\@gmail.com](mailto:ourcodingclub@gmail.com){.email}
-
-#### <a href="INSERT_SURVEY_LINK" target="_blank">We would love to hear your feedback on the tutorial, whether you did it in the classroom or online!</a>
-
-<ul class="social-icons">
-
-<li>
-
-<h3><a href="https://twitter.com/our_codingclub" target="_blank"> Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a></h3>
-
-</li>
-
-</ul>
-
-###   Subscribe to our mailing list:
-
-::: container
-```         
-<div class="block">
-    <!-- subscribe form start -->
-    <div class="form-group">
-        <form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
-        <div class="form-group">
-            <input type='text' class="form-control" name='Email' placeholder="Email" required/>
-        </div>
-        <div>
-                        <button class="btn btn-default" type='submit'>Subscribe</button>
-                    </div>
-                </form>
-    </div>
-</div>
-```
-:::

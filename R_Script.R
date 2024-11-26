@@ -174,11 +174,45 @@ predicted_classes_rf <- predict(random_forest, test_data)
 
 # SVM ----
 
+# Ensure that the outcome variable is a factor (classification)
+train_data$is_versicolor <- factor(train_data$is_versicolor)
+test_data$is_versicolor <- factor(test_data$is_versicolor)
 
+# Train an SVM model using a radial basis function kernel (default kernel)
+svm_model <- svm(is_versicolor ~ ., data = train_data, kernel = "radial", scale = TRUE)
 
+# Predict the classes using the trained SVM model
+predicted_classes_svm <- predict(svm_model, test_data)
 
+# Confusion Matrix and Accuracy for SVM
+CM_SVM <- confusionMatrix(as.factor(predicted_classes_svm), as.factor(test_data$is_versicolor))
+CM_SVM$table
+kable(CM_SVM$table, format = "html")
 
+accuracy_svm <- CM_SVM$overall["Accuracy"]
 
+# Print Accuracy
+print(paste("SVM Accuracy:", round(accuracy_svm * 100, 2), "%"))
+
+# Visualization
+# Reduce data to two features
+# Sepal
+Sepal_train_data <- train_data[, c(1, 2, 6)]
+# Train new model
+Sepal_svm_model <- svm(is_versicolor ~ ., data = Sepal_train_data, kernel = "radial", scale = TRUE)
+
+png("Images/svm_Sepal_plot.png", width = 800, height = 600)  # Set the file name and dimensions
+plot(Sepal_svm_model, Sepal_train_data)
+dev.off()  # Close the graphics device
+
+# Petal
+Petal_train_data <- train_data[, c(3,4, 6)]
+# Train new model
+Petal_svm_model <- svm(is_versicolor ~ ., data = Petal_train_data, kernel = "radial", scale = TRUE)
+
+png("Images/svm_Petal_plot.png", width = 800, height = 600)  # Set the file name and dimensions
+plot(Petal_svm_model, Petal_train_data)
+dev.off()  # Close the graphics device
 
 
 
