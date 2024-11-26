@@ -451,9 +451,9 @@ plot(Petal_svm_model, Petal_train_data)
 dev.off()  # Close the graphics device
 ```
 
-<left><img src="/Images/svm_Sepal_plot.png" alt="Img" width="300"/></left> <right><img src="/Images/svm_Petal_plot.png" alt="Img" width="300"/></right>
+<left><img src="/Images/svm_Sepal_plot.png" alt="Img" width="500"/></left> <right><img src="/Images/svm_Petal_plot.png" alt="Img" width="500"/></right>
 
-Based on the comparative analysis of SVM classification plots using different Iris flower measurements, we can conclude that petal characteristics (width and length) serve as substantially more reliable discriminative features than sepal measurements for species classification. While the sepal-based plot exhibits considerable overlap between classes and an irregular decision boundary, the petal-based plot demonstrates clear class separation, particularly for one species that forms a distinct cluster. The results also highlight the importance of feature selection in machine learning applications, as choosing the most informative features can significantly impact the model's performance and reliability.
+Based on the comparative analysis of SVM classification plots using different Iris flower measurements, we can conclude that petal characteristics (width and length) serve as substantially more reliable discriminative features than sepal measurements for species classification. While the sepal-based plot exhibits considerable overlap between classes and an irregular decision boundary, the petal-based plot demonstrates clear class separation, particularly for one species that forms a distinct cluster. This results also highlight the importance of feature selection in machine learning applications, as choosing the most informative features can significantly impact the model's performance and reliability.
 
 For more detail, check the following <a href="https://scikit-learn.org/1.5/modules/svm.html" target="_blank">link</a>.
 
