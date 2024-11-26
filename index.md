@@ -1,4 +1,4 @@
-<center><img src="/Images/background.jpeg" alt="Img" width="589"/></center>
+<center><img src="Images/background.jpeg" alt="Img" width="589"/></center>
 
 ### Tutorial Aims
 
@@ -34,7 +34,7 @@ There are **four types** of Machine Learning algorithms,
 
 ### Have you ever wondered how to recognise different species of iris flowers?
 
-<center><img src="/Images/iris.png" alt="Img"/></center>
+<center><img src="Images/iris.png" alt="Img"/></center>
 
 While botanists use physical characteristics like petal and sepal measurements, in this tutorial, we will focus on teaching a computer to do the same! By leveraging the powerful R programming language, we’ll guide you through the process of using data analysis and classification techniques to identify iris species. Whether you’re a curious beginner or an experienced data enthusiast, this tutorial will equip you with the tools to build your own flower-recognition model.
 
@@ -89,9 +89,9 @@ boxplot_iris
 
 Ensure to call the plot name again so it can be displayed on the Plots panel.
 
-<center><img src="/Images/scatter_iris.png" alt="Img"/></center>
+<center><img src="Images/scatter_iris.png" alt="Img"/></center>
 
-<center><img src="/Images/boxplot_sepal_length.png" alt="Img"/></center>
+<center><img src="Images/boxplot_sepal_length.png" alt="Img"/></center>
 
 From the above two plots, we can see the same species are tend to cluster together. Now that we know that there is a clear difference in structural traits between species.
 
@@ -111,7 +111,7 @@ While linear regression is leveraged when dependent variables are continuous, <a
 
 The logistic function, commonly referred to as the **sigmoid function**, is the basic idea underpinning logistic regression. This sigmoid function is used in logistic regression to describe the correlation between the predictor variables and the likelihood of the binary outcome.
 
-<center><img src="/Images/Logistic Regression.png" alt="Img" width="700" height="500"/></center>
+<center><img src="Images/Logistic Regression.png" alt="Img" width="700" height="500"/></center>
 
 Since this algorithm can only have binary output, for example, we can classify whether a iris flower is "versicolor" or "not versicolor" species.
 
@@ -195,7 +195,7 @@ From confusion matrix and `[1] "Accuracy: 71.11 %"` meaning that only part of th
 
 <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">**K-nearest neighbor**</a>, also known as the KNN algorithm, is a non-parametric algorithm that classifies data points based on their proximity and association to other available data. This algorithm assumes that similar data points can be found near each other. As a result, it seeks to calculate the distance between data points, usually through Euclidean distance, and then it assigns a category based on the most frequent category or average. Its ease of use and low calculation time make it a preferred algorithm by data scientists, but as the test dataset grows, the processing time lengthens, making it less appealing for classification tasks. KNN is typically used for recommendation engines and image recognition.
 
-<center><img src="/Images/KNN.png" alt="Img"/></center>
+<center><img src="Images/KNN.png" alt="Img"/></center>
 
 In this example, we'll follow a similar approach to the logistic regression above, but using KNN for the classification. We'll use the `class` package to implement the KNN algorithm.
 
@@ -284,7 +284,7 @@ KNN_plot <- ggplot(accuracy_data, aes(x = k, y = Accuracy)) +
 KNN_plot
 ```
 
-<center><img src="/Images/KNN_plot.png" alt="Img" width="700" height="500"/></center>
+<center><img src="Images/KNN_plot.png" alt="Img" width="700" height="500"/></center>
 
 The accuracy of 97.78% across all k values indicates that the KNN model is **robust** for this classification task. While k selection typically matters in KNN, the lack of variation in accuracy here suggests that this dataset provides sufficient separation between classes to achieve consistent results, regardless of the number of neighbors considered.
 
@@ -304,7 +304,7 @@ It typically starts with a single node, which branches into possible outcomes. E
 
 There are three different types of nodes: chance nodes, decision nodes, and end nodes. A chance node, represented by a circle, shows the probabilities of certain results. A decision node, represented by a square, shows a decision to be made, and an end node shows the final outcome of a decision path.
 
-<center><img src="/Images/Decision_Tree.jpg" alt="Img" width="700" height="500"/></center>
+<center><img src="Images/Decision_Tree.jpg" alt="Img" width="700" height="500"/></center>
 
 Let's use the same train data to Fit the Decision Tree Model.
 
@@ -326,7 +326,7 @@ rpart.plot(decision_tree, main = "Decision Tree for Classifying Versicolor")  # 
 dev.off()  # Close the graphics device
 ```
 
-<center><img src="/Images/decision_tree_plot.png" alt="Img"/></center>
+<center><img src="Images/decision_tree_plot.png" alt="Img"/></center>
 
 The decision tree classifies samples as versicolor (`1`) or not versicolor (`0`) based on Species. If Species is setosa or virginica, the prediction is 0, covering 70% of the samples. If it is not, the prediction is 1, covering the remaining 30%. This clear split shows Species is highly effective for classification.
 
@@ -361,7 +361,7 @@ The decision tree model achieved a perfect classification. The confusion matrix 
 
 A <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank">**Random Forest**</a> is an ensemble method that builds multiple decision trees and combines their predictions to improve accuracy and reduce overfitting. The main idea behind random forests is:
 
-<center><img src="/Images/random_forest.png" alt="Img"/></center>
+<center><img src="Images/random_forest.png" alt="Img"/></center>
 
 -   **Bootstrapping (Random Sampling)**: Randomly sample subsets of the training data to build each tree, allowing the model to generalize better.
 -   **Random Feature Selection**: For each split in a tree, select a random subset of features, making the trees less correlated with each other and enhancing the model's diversity.
@@ -383,7 +383,7 @@ For more detail, check the following <a href="https://www.rdocumentation.org/pac
 
 <a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank">**Support vector machine (SVM)**</a> is a popular supervised learning model developed by *Vladimir Vapnik*, used for both data classification and regression. That said, it is typically leveraged for classification problems, constructing a hyperplane where the **distance** between two classes of data points is at its **maximum**. This hyperplane is known as the decision boundary, separating the classes of data points (e.g., oranges vs. apples) on either side of the plane.
 
-<center><img src="/Images/SVM.png" alt="Img"/></center>
+<center><img src="Images/SVM.png" alt="Img"/></center>
 
 Again, we are using the same training and testing dataset for this case.
 
@@ -451,7 +451,7 @@ plot(Petal_svm_model, Petal_train_data)
 dev.off()  # Close the graphics device
 ```
 
-<left><img src="/Images/svm_Sepal_plot.png" alt="Img" width="500"/></left> <right><img src="/Images/svm_Petal_plot.png" alt="Img" width="500"/></right>
+<left><img src="Images/svm_Sepal_plot.png" alt="Img" width="500"/></left> <right><img src="Images/svm_Petal_plot.png" alt="Img" width="500"/></right>
 
 Based on the comparative analysis of SVM classification plots using different Iris flower measurements, we can conclude that petal characteristics (width and length) serve as substantially more reliable discriminative features than sepal measurements for species classification. While the sepal-based plot exhibits considerable overlap between classes and an irregular decision boundary, the petal-based plot demonstrates clear class separation, particularly for one species that forms a distinct cluster. This results also highlight the importance of feature selection in machine learning applications, as choosing the most informative features can significantly impact the model's performance and reliability.
 
