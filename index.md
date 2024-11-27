@@ -190,7 +190,7 @@ print(paste("Accuracy:", round(accuracy * 100, 2), "%"))
 | 0   |  24 |  10 |
 | 1   |   3 |   8 |
 
-From confusion matrix and `[1] "Accuracy: 71.11 %"` meaning that only part of the predictions were correct. While the model performs well for identifying non-versicolor flowers, the number of correctly predicted "versicolor" flowers could be improved. You might consider adjusting the threshold for classification or tuning the model's parameters.
+From confusion matrix and `[1] "Accuracy: 71.11 %"` meaning that only part of the predictions were correct. Only 24 non-versicolors and 8 versicolors got correctly recognised. While the model performs well for identifying non-versicolor flowers, the number of correctly predicted "versicolor" flowers could be improved. You might consider adjusting the threshold for classification or tuning the model's parameters.
 
 <a name="section2-2"></a>
 
