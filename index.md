@@ -96,7 +96,7 @@ Ensure to call the plot name again so it can be displayed on the Plots panel.
 
 <center><img src="Images/boxplot_sepal_length.png" alt="Img"/></center>
 
-From the above two plots, we can see the same species are tend to cluster together. Now that we know that there is a clear difference in structural traits between species.
+From the above two plots, we can see the same species are tend to cluster together. Now we know that there is a clear difference in structural traits between species.
 
 <a name="section2"></a>
 
