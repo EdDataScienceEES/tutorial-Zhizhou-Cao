@@ -376,7 +376,9 @@ A <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank">**Random
 <div style="background-color: #e6f7ff; padding: 10px; border-radius: 5px;">
 
 -   **Bootstrapping (Random Sampling)**: Randomly sample subsets of the training data to build each tree, allowing the model to generalize better.
+
 -   **Random Feature Selection**: For each split in a tree, select a random subset of features, making the trees less correlated with each other and enhancing the model's diversity.
+
 -   **Majority Voting**: For classification problems, each tree in the forest votes on the class, and the class with the most votes is chosen as the final prediction.
 
 </div>
