@@ -292,7 +292,7 @@ KNN_plot
 
 The accuracy of 97.78% across all k values indicates that the KNN model is **robust** for this classification task. While k selection typically matters in KNN, the lack of variation in accuracy here suggests that this dataset provides sufficient separation between classes to achieve consistent results, regardless of the number of neighbors considered.
 
-In general, a simple approach to select k is set $k = \sqrt{n}$, where $n$ is the the number of samples in your training dataset. Remeber, it's better to have a odd number which prevent a tie situation if you only have two classes. A small value of k means that noise will have a higher influence on the result. A large value make it computationally expensive.
+In general, a simple approach to select k is set $k = \sqrt{n}$, where n is the the number of samples in your training dataset. Remeber, it's better to have a odd number which prevent a tie situation if you only have two classes. A small value of k means that noise will have a higher influence on the result. A large value make it computationally expensive.
 
 In order to find the optimal k value, use cross-validation (especially leave-one-out cross-validation) is needed to evaluate the model's performance for different k values instead of relying solely on the training or test data. This helps prevent overfitting and ensures the chosen k generalises well to new data.
 
