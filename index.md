@@ -120,9 +120,13 @@ Since this algorithm can only have binary output, for example, we can classify w
 
 1.  data preparation: create a binary variable `is_versicolor` where:
 
-  - **`1` represents "versicolor".**    
-  - **`0` represents the other species ("setosa" and "virginica").**
+<div style="background-color: #d9edf7; padding: 10px; border-radius: 5px;">
 
+  - **`1` represents "versicolor".**    
+  
+  - **`0` represents the other species ("setosa" and "virginica").**
+  
+</div>
 
 ``` r
 # Create a binary classification problem
