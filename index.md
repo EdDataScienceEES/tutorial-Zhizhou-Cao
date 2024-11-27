@@ -435,7 +435,7 @@ accuracy_svm <- CM_SVM$overall["Accuracy"]
 
 `[1] "SVM Accuracy: 100 %"`
 
-The SVM model achieved 100% accuracy, meaning it correctly classified all instances in the test data. This suggests that the model has perfectly separated the classes in this dataset. However, it's important to note that perfect accuracy can sometimes indicate \*overfitting\*\*, especially if the dataset is small or simple, so it's always good to test the model on different data or use cross-validation to ensure robustness.
+The SVM model achieved 100% accuracy, meaning it correctly classified all instances in the test data. This suggests that the model has perfectly separated the classes in this dataset. However, it's important to note that perfect accuracy can sometimes indicate **overfitting**, especially if the dataset is small or simple, so it's always good to test the model on different data or use cross-validation to ensure robustness.
 
 4.  Visualisation
 
