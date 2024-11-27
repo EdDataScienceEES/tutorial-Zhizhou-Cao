@@ -120,7 +120,7 @@ Since this algorithm can only have binary output, for example, we can classify w
 
 1.  data preparation: create a binary variable `is_versicolor` where:
 
-<div style="background-color: #e6f7ff; padding: 10px; border-radius: 5px;">
+<div style="background-color: #e6f7ff; padding: 10px; border-radius: 5px;>
    
   - `1` represents "versicolor".  
    
