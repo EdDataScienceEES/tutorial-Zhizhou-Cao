@@ -9,7 +9,7 @@ library(rpart)       # For decision tree
 library(rpart.plot)  # For visualizing the tree
 library(stats) # Logistic regression is included in base R through the glm() function.
 library(e1071) #SVM
-
+library(knitr)
 
 
 # Load data ----
@@ -72,8 +72,8 @@ predicted_classes <- ifelse(predicted_probs > 0.5, 1, 0)
 CM_LR <- confusionMatrix(as.factor(predicted_classes), as.factor(test_data$is_versicolor))
 CM_LR$table
 kable(CM_LR$table, format = "html")
-accuracy <- mean(predicted_classes == test_data$is_versicolor)
-print(paste("Accuracy:", round(accuracy * 100, 2), "%"))
+accuracy_LR <- mean(predicted_classes == test_data$is_versicolor)
+print(paste("Accuracy:", round(accuracy_LR * 100, 2), "%"))
 
 
 
@@ -164,7 +164,7 @@ CM_dt <- confusionMatrix(as.factor(predicted_classes_dt), as.factor(test_data$is
 print(CM_dt$table)
 kable(CM_dt$table, format = "html")
 # Extract Accuracy
-accuracy_dt <- confusion_mat_dt$overall["Accuracy"]
+accuracy_dt <-as.numeric(CM_dt$overall["Accuracy"])
 print(paste("Decision Tree Accuracy:", round(accuracy_dt * 100, 2), "%"))
 
 # Random Forest
@@ -189,7 +189,7 @@ CM_SVM <- confusionMatrix(as.factor(predicted_classes_svm), as.factor(test_data$
 CM_SVM$table
 kable(CM_SVM$table, format = "html")
 
-accuracy_svm <- CM_SVM$overall["Accuracy"]
+accuracy_svm <- as.numeric(CM_SVM$overall["Accuracy"])
 
 # Print Accuracy
 print(paste("SVM Accuracy:", round(accuracy_svm * 100, 2), "%"))
@@ -213,6 +213,34 @@ Petal_svm_model <- svm(is_versicolor ~ ., data = Petal_train_data, kernel = "rad
 png("Images/svm_Petal_plot.png", width = 800, height = 600)  # Set the file name and dimensions
 plot(Petal_svm_model, Petal_train_data)
 dev.off()  # Close the graphics device
+
+
+# Comparison-----
+
+# Create a data frame of accuracies
+accuracy_df <- data.frame(
+  Method = c("Logistic Regression", "kNN", "Decision Tree", "SVM"),
+  Accuracy = c(accuracy_LR, accuracy_knn, accuracy_dt, accuracy_svm)
+)
+
+# Ensure the Method column has the specified order
+accuracy_df$Method <- factor(accuracy_df$Method, levels = c("Logistic Regression", "kNN", "Decision Tree", "SVM"))
+
+# Create a bar plot
+(comparison_plot <- ggplot(accuracy_df, aes(x = Method, y = Accuracy, fill = Method)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(
+    title = "Accuracy Comparison of Different Methods",
+    x = "Method",
+    y = "Accuracy"
+  ) +
+  ylim(0, 1.055) +
+  theme_minimal(base_size = 15) +
+  theme(legend.position = "none") + # Hide legend as it's redundant
+  geom_text(aes(label = round(Accuracy, 3)), vjust = -0.5, size = 5))
+
+ggsave(filename = "Images/comparison_plot.png", plot = comparison_plot)
+
 
 
 

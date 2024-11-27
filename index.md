@@ -1,4 +1,4 @@
-<center><img src="Images/background.jpeg" alt="Img" width="589"/></center>
+<center><img src="Images/background.jpeg" alt="Img" width="276"/></center>
 
 ### Tutorial Aims
 
@@ -461,3 +461,56 @@ For more detail, check the following <a href="https://scikit-learn.org/1.5/modul
 
 ## 3. Comparison and Summary
 
+After all those practice, are you familiar with supervised learning algorithms now? Now, let's compare their performance.
+
+``` r
+# Create a data frame of accuracies
+accuracy_df <- data.frame(
+  Method = c("Logistic Regression", "kNN", "Decision Tree", "SVM"),
+  Accuracy = c(accuracy_LR, accuracy_knn, accuracy_dt, accuracy_svm))
+
+# Ensure the Method column has the specified order
+accuracy_df$Method <- factor(accuracy_df$Method, levels = c("Logistic Regression", "kNN", "Decision Tree", "SVM"))
+
+# Create a bar plot
+ggplot(accuracy_df, aes(x = Method, y = Accuracy, fill = Method)) +
+  geom_bar(stat = "identity", color = "black") +
+  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.1)) +
+  labs(
+    title = "Accuracy Comparison of Different Methods",
+    x = "Method",
+    y = "Accuracy"
+  ) +
+  ylim(0, 1.055) +
+  theme_minimal(base_size = 15) +
+  theme(legend.position = "none") + # Hide legend as it's redundant
+  geom_text(aes(label = round(Accuracy, 3)), vjust = -0.5, size = 5)
+```
+
+<center><img src="Images/comparison_plot.png" alt="Img"/></center>
+
+Both the Decision Tree and SVM models achieved perfect accuracy, indicating their strong performance for this dataset. The kNN method also performed impressively with near-perfect accuracy, making it a reliable choice. In contrast, Logistic Regression lagged behind, suggesting that it may not be the best choice for datasets with nonlinear relationships between features. Overall, the results highlight the importance of trying multiple algorithms to find the most suitable one for a given classification task. Further validation on a larger test set or through cross-validation is recommended to confirm the generalizability of these findings.
+
+Choosing the best algorithm for a classification problem involves considering the characteristics of your dataset, the requirements of your task, and the strengths of various algorithms. Here is a general guide:
+
+| Algorithm | Strengths | Limitations |
+|------------------|-----------------------------|-------------------------|
+| **Logistic Regression** | Simple, interpretable, good for linear relationships | Struggles with non-linear or complex data |
+| **kNN** | Non-linear decision boundaries, simple to understand | Sensitive to noise, computationally expensive |
+| **Decision Trees** | Interpretable, handles mixed data types | Prone to overfitting without pruning |
+| **SVM** | Effective in high-dimensional spaces, robust | Computationally expensive, requires tuning |
+| **Random Forest** | Reduces overfitting, works well on large datasets | Less interpretable, slower for large forests |
+
+#### Summary
+
+In this tutorial we have now covered the following:
+
+1.  the very basics of machine learning in R
+
+2.  implementing four classification algorithms
+
+3.  building our own training and test datasets
+
+4.  testing and evaluating our algorithms using iris data
+
+However there is still a whole world to explore. For those interested in learning more have a look at this <a href="https://lgatto.github.io/IntroMachineLearningWithR/an-introduction-to-machine-learning-with-r.html" target="_blank">link</a>
