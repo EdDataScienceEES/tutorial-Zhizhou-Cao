@@ -53,8 +53,11 @@ library(dplyr)
 library(ggplot2)
 library(class) #basic KNN
 library(randomForest) #Random Forest implementation
+library(rpart)       # For decision tree
+library(rpart.plot)  # For visualizing the tree
 library(stats) # Logistic regression is included in base R through the glm() function.
 library(e1071) #SVM
+library(knitr)
 ```
 
 ##### Load dataset
