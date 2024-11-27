@@ -294,6 +294,8 @@ In order to find the optimal k value, use cross-validation (especially leave-one
 
 For more detail, check the following links. <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)" target="_blank">cross-validation</a>, <a href="https://medium.com/@rkbohara097/how-to-find-the-optimal-value-of-k-in-knn-2d5177430f2a" target="_blank">Finding optical K for KNN</a>
 
+There is also a <a href="https://ourcodingclub.github.io/tutorials/machine-learning/#test">tutorial</a> in Coding Club regarding to KNN.
+
 <a name="section2-3"></a>
 
 ## 2.3 Decision Tree
