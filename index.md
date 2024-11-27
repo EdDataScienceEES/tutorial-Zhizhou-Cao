@@ -122,9 +122,9 @@ Since this algorithm can only have binary output, for example, we can classify w
 
 <div style="background-color: #d9edf7; padding: 10px; border-radius: 5px;">
 
-  - **`1` represents "versicolor".**    
+  - `1` represents "versicolor".  
   
-  - **`0` represents the other species ("setosa" and "virginica").**
+  - `0` represents the other species ("setosa" and "virginica").
   
 </div>
 
