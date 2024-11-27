@@ -21,7 +21,7 @@
 ## 1. What is Machine Learning?
 
 <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank">Machine learning (ML)</a> is a field of study in artificial intelligence concerned with the development and study of statistical algorithms that can learn from data and generalize to unseen data, and thus perform tasks without explicit instructions. Today,this technologies have become some of the biggest players in the world of artificial intelligence and computer science.\
-In other words, just like repeatly showing items to a children to help them recognise, Machine learning makes computers more intelligent without explicitly teaching them how to behave.
+In other words, just like repeatly showing items to a children to help them recognise, Machine Learning makes computers more intelligent without explicitly teaching them how to behave.
 
 There are **four types** of Machine Learning algorithms,
 
