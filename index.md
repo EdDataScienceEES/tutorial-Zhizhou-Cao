@@ -119,14 +119,10 @@ The logistic function, commonly referred to as the **sigmoid function**, is the 
 Since this algorithm can only have binary output, for example, we can classify whether a iris flower is "versicolor" or "not versicolor" species.
 
 1.  data preparation: create a binary variable `is_versicolor` where:
-
-<div style="background-color: #e6f7ff;">
-   
-  - `1` represents "versicolor".  
-   
+ ```  
+  - `1` represents "versicolor".    
   - `0` represents the other species ("setosa" and "virginica").
-   
-</div>
+```
 
 ``` r
 # Create a binary classification problem
