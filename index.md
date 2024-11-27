@@ -119,10 +119,10 @@ The logistic function, commonly referred to as the **sigmoid function**, is the 
 Since this algorithm can only have binary output, for example, we can classify whether a iris flower is "versicolor" or "not versicolor" species.
 
 1.  data preparation: create a binary variable `is_versicolor` where:
- ```  
-  - `1` represents "versicolor".    
-  - `0` represents the other species ("setosa" and "virginica").
-```
+
+  - **`1` represents "versicolor".**    
+  - **`0` represents the other species ("setosa" and "virginica").**
+
 
 ``` r
 # Create a binary classification problem
@@ -369,21 +369,13 @@ A <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank">**Random
 
 <center><img src="Images/random_forest.png" alt="Img"/></center>
 
-<div style="background-color: #e6f7ff; padding: 10px; border-radius: 5px;">
-  
-  - **Bootstrapping (Random Sampling)**: Randomly sample subsets of the training data to build each tree, allowing the model to generalize better.  
 
-</div>
-<div style="background-color: #e6f7ff; padding: 10px; border-radius: 5px;">
+  - **Bootstrapping (Random Sampling)**: Randomly sample subsets of the training data to build each tree, allowing the model to generalize better.  
  
   - **Random Feature Selection**: For each split in a tree, select a random subset of features, making the trees less correlated with each other and enhancing the model's diversity.    
 
-</div>
-<div style="background-color: #e6f7ff; padding: 10px; border-radius: 5px;">
-
   - **Majority Voting**: For classification problems, each tree in the forest votes on the class, and the class with the most votes is chosen as the final prediction.  
 
-</div>
 
 
 Code example:
