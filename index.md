@@ -122,9 +122,9 @@ Since this algorithm can only have binary output, for example, we can classify w
 
 ::: {style="background-color: #d9edf7; padding: 10px; border-radius: 5px;"}
 -   `1` represents "versicolor".\
--   `0` represents the other species ("setosa" and "virginica").
+-   `0` represents the other species ("setosa" and "virginica").\
 :::
-
+\
 ``` r
 # Create a binary classification problem
 iris.data$is_versicolor <- ifelse(iris$Species == "versicolor", 1, 0)
