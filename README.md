@@ -1,4 +1,4 @@
-# Tutorial : Machine Learning Tutorial in R
+# Tutorial : Machine Learning in R
 
 
 Author: Zhizhou Cao [s2178688\@ed.ac.uk](mailto:s2178688@ed.ac.uk)
